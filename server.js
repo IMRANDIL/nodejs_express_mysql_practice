@@ -17,9 +17,9 @@ const app = express()
 
 const { faker } = require('@faker-js/faker');
 
-console.log(faker.date.past());
+// console.log(faker.date.past());
 
-console.log(faker.internet.email());
+// console.log(faker.internet.email());
 
 
 
@@ -38,12 +38,14 @@ const con = mysql.createConnection({
 con.connect(function (err) {
     if (err) throw err;
     console.log('Database connected😄');
-    const sql = 'SELECT CURTIME() as time, CURDATE() as date, NOW() as now';
-    con.query(sql, function (err, result, fields) {
+    // const sql = 'SELECT COUNT(*) AS total FROM users';
+    // const sql = `INSERT INTO users (email) VALUES ("whey@gmail.com")`;
+    const person = { email: faker.internet.email() };
+    // const sql = `INSERT INTO users SET ?`;     //insert data dynamically....
+    con.query(sql, person, function (err, result, fields) {
         if (err) throw err;
-        console.log('The time is: ', result[0].time);
-        console.log('The date is: ', result[0].date);
-        console.log('The now is: ', result[0].now);
+        console.log(result);
+
 
     })
 })
