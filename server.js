@@ -17,7 +17,7 @@ const app = express()
 
 const { faker } = require('@faker-js/faker');
 
-
+console.log(faker.date.past());
 
 console.log(faker.internet.email());
 
