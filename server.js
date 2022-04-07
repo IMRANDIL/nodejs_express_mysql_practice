@@ -40,8 +40,13 @@ con.connect(function (err) {
     console.log('Database connected😄');
     // const sql = 'SELECT COUNT(*) AS total FROM users';
     // const sql = `INSERT INTO users (email) VALUES ("whey@gmail.com")`;
-    const person = { email: faker.internet.email() };
-    // const sql = `INSERT INTO users SET ?`;     //insert data dynamically....
+    const person = {
+        email: faker.internet.email(),
+        created_at: faker.date.past()
+    };
+
+
+    const sql = `INSERT INTO users SET ?`;     //insert data dynamically....
     con.query(sql, person, function (err, result, fields) {
         if (err) throw err;
         console.log(result);
